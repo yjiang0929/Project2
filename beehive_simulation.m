@@ -5,58 +5,8 @@ function [t, T] = beehive_simulation(initialTime, finalTime)
     temp_hive = 308;                           % K, 34.85'C
     temp_environment = zeros(150);             % K, column vector, daily;
                                                % 1 month = 30 days
-    %initializing environmental Temperature(Needham)
-    %lets assume temperature changes every other month for now
-    %source : https://weather.com/weather/monthly/l/Needham+MA+02492:4:US
-    for i=0:150
-        if(i <= 30) %% November 34'F -> 274 K
-        temp_environment(i) = 274;
-
-        elseif(i > 30 && i <= 60) %% December 24'F, -> 269K
-        temp_environment(i) = 269;   
-     
-        elseif(i > 60 && i <= 90) %% January 17'F, -> 265K
-        temp_environment(i) = 265;
-
-        elseif(i > 90 && i <= 120) %% Feburary 19'F, -> 266K
-        temp_environment(i) = 266;
-
-        elseif(i > 120 && i <= 150) %% March 27'F, -> 270K
-        temp_environment(i) = 270;
-        end
-    end     
                                       
     number_bees = 10000;
-    
-    function res = heat_production_single(temp) %temp in kelvin
-        temperature = temp - 273.15; %converts input into celsius
-        if(temperature < 0)
-            res = -0.0001 * temperature + 0.002;       %W (J/s)
-        elseif (temperature => 0)
-            res = 0.002                         %W (J/s)
-        end
-    end
-
-    insolation = zeros(150);                   %insolation over 150 days
-    %initialization, 
-    %source : http://solarenergylocal.com/states/massachusetts/boston/
-    for i=0:150
-        if(i <= 30) %% November 3.13 kWh/m^2/day
-        insolation(i) = 3.13;
-
-        elseif(i > 30 && i <= 60) %% December 2.94 kWh/m^2/day
-        insolation(i) = 2.94;   
-     
-        elseif(i > 60 && i <= 90) %% January 3.36 kWh/m^2/day
-        insolation(i) = 3.36;
-
-        elseif(i > 90 && i <= 120) %% Feburary 4.23 kWh/m^2/day
-        insolation(i) = 4.23;
-
-        elseif(i > 120 && i <= 150) %% March 4.76 kWh/m^2/day
-        insolation(i) = 4.76;
-        end
-    end
     efficiency_of_absorption = 0.9;
     projected_area = 0.1472;                            %m^2 (two surfaces)
     
@@ -83,10 +33,8 @@ function [t, T] = beehive_simulation(initialTime, finalTime)
     initial_energy_beehive = temperatureToEnergy(temp_hive, heat_capacity);
     
     %% Now invoke ode45 and convert the resulting energies to temperature.
-    dUdt = @(ti, Ui) beehive_flow(ti, Ui, temp_environment(ti), number_bees, ...
-    heat_production_single(energyToTemperature(Ui,heat_capacity)),... 
-    insolation(ti), efficiency_of_absorption, ...
-    projected_area, thickness_bubble_wrap, thickness_blue_foam, ...
+    dUdt = @(ti, Ui) beehive_flow(ti, Ui, number_bees, ... 
+    efficiency_of_absorption, projected_area, thickness_bubble_wrap, thickness_blue_foam, ...
     thickness_wall, thermal_conductivity_bubble_wrap, ...
     thermal_conductivity_blue_foam, thermal_conductivity_wall, ...
     area_of_contact_top, area_of_contact_side, ...
