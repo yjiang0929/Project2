@@ -9,7 +9,7 @@ function [t, T] = beehive_simulation(initialTime, finalTime)
     
     %beehive size = 51cm * 41cm * 16cm, thickness=1.5cm
     %sweep parameters
-    experiment_constant = 1;
+    experiment_constant = 1000;
     thickness_bubble_wrap = 0.01 * experiment_constant;                  %m
     thickness_blue_foam = 0.05 * experiment_constant;                    %m
     
