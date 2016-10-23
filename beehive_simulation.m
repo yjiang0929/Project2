@@ -2,14 +2,14 @@ function [t, T] = beehive_simulation(initialTime, finalTime)
 
     %%Beehive Constants
 
-    temp_hive = 308;                           % K, 34.85'C                         
+    temp_hive = 300;                           % K, 34.85'C                         
     number_bees = 4000;
     efficiency_of_absorption = 0.9;
     projected_area = 0.1472;                            %m^2 (two surfaces)
     
     %beehive size = 51cm * 41cm * 16cm, thickness=1.5cm
     %sweep parameters
-    thickness_bubble_wrap = 0.02;                  %m
+    thickness_bubble_wrap = 0.01;                  %m
     thickness_blue_foam = 0.05;                    %m
     
     thickness_wall = 0.015;                             %m;
