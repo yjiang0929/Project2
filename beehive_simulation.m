@@ -3,7 +3,7 @@ function [t, T] = beehive_simulation(initialTime, finalTime)
     %%Beehive Constants
 
     temp_hive = 308;                           % K, 34.85'C                         
-    number_bees = 10000;
+    number_bees = 4000;
     efficiency_of_absorption = 0.9;
     projected_area = 0.1472;                            %m^2 (two surfaces)
     
