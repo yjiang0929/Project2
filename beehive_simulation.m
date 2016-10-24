@@ -5,7 +5,7 @@ function [t, T] = beehive_simulation(initialTime, finalTime,thickness_bubble_wra
     temp_hive = 300;                           % K, 34.85'C                         
     number_bees = 5000;
     efficiency_of_absorption = 0.9;
-    projected_area = 0.1472;                            %m^2 (two surfaces)
+    projected_area = 0.1472;                           %m^2 (two surfaces)
     
     %beehive size = 51cm * 41cm * 16cm, thickness=1.5cm
     %sweep parameters
