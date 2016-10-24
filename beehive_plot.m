@@ -13,7 +13,7 @@ xlabel ('Time(days)');
 ylabel ('Tempearture (celsius)');
 title ('Beehive over Winter(thickness of bubble wrap = 0.01m)'); 
 l = legend('show');
-title(l, 'Thickness of bubble wrap(m)')
+title(l, 'Thickness of blue foam(m)')
 l.Orientation = 'vertical';
 l.Position = [0.7 0.75 0 0];
 legend('boxoff');
