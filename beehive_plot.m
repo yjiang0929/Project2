@@ -6,14 +6,14 @@ for thickness_bubble_wrap = 0:0.005:0.05
    [t,T] = beehive_simulation (0,12960000, thickness_bubble_wrap, thickness_blue_foam); 
     plot (t/86400, T-273.15,'DisplayName', num2str(thickness_bubble_wrap,2)) %x = day, T= kelvin.
 end;
-%thickness_blue_foam = 10;
-    %[t,T] = beehive_simulation (0,12960000, thickness_bubble_wrap, thickness_blue_foam);
-    %plot (t/86400, T-273.15,'DisplayName', num2str(thickness_blue_foam,2)) %x = day, T= kelvin.
+thickness_bubble_wrap = 0.1;
+    [t,T] = beehive_simulation (0,12960000, thickness_bubble_wrap, thickness_blue_foam);
+    plot (t/86400, T-273.15,'DisplayName', num2str(thickness_bubble_wrap,2)) %x = day, T= kelvin.
 xlabel ('Time(days)');
 ylabel ('Tempearture (celsius)');
 title ('Beehive over Winter(thickness of blue foam = 0.05m)'); 
 l = legend('show');
-title(l, 'Thickness of blue foam(m)')
+title(l, 'Thickness of bubble wrap(m)')
 l.Orientation = 'vertical';
 l.Position = [0.7 0.75 0 0];
 legend('boxoff');
